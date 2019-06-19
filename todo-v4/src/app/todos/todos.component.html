@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="title">Todos</h1>
+  <div class="ver">4.0</div>
+
+  <input class="input-todo" placeholder="What needs to be done?" (keyup.enter)="addTodo($event.target)" autofocus>
+  <ul class="nav">
+    <li id="all" [class.active]="navState === 'all'" (click)="tabTodo($event.target.id)">All</li>
+    <li id="active" [class.active]="navState === 'active'" (click)="tabTodo($event.target.id)">Active</li>
+    <li id="completed" [class.active]="navState === 'completed'" (click)="tabTodo($event.target.id)">Completed</li>
+  </ul>
+
+  <ul class="todos">
+    <li class="todo-item" *ngFor="let todo of Todo">
+      <input type="checkbox" id="ck-{{todo.id}}" class="custom-checkbox" [checked]="todo.completed"
+        (change)="checkTodo(todo.id)">
+      <label for="ck-{{todo.id}}">{{todo.content}}</label>
+      <i class="remove-todo far fa-times-circle" (click)="removeTodo(todo.id)"></i>
+    </li>
+  </ul>
+
+  <div class="footer">
+    <div class="complete-all">
+      <input type="checkbox" id="ck-complete-all" class="custom-checkbox" (change)="allCheck($event.target.checked)">
+      <label for="ck-complete-all">Mark all as complete</label>
+    </div>
+    <div class="clear-completed">
+      <button class="btn" (click)="clearCompleted()">Clear completed (<span
+          class="completed-todos">{{CompletedCount}}</span>)</button>
+      <strong class="active-todos">{{LeftCount}}</strong> items left
+    </div>
+  </div>
+</div>
+
+<pre>{{ todos | json }}</pre>
