@@ -4,9 +4,8 @@
 
   <input class="input-todo" placeholder="What needs to be done?" (keyup.enter)="addTodo($event.target)" autofocus>
   <ul class="nav">
-    <li id="all" [class.active]="navState === 'all'" (click)="tabTodo($event.target.id)">All</li>
-    <li id="active" [class.active]="navState === 'active'" (click)="tabTodo($event.target.id)">Active</li>
-    <li id="completed" [class.active]="navState === 'completed'" (click)="tabTodo($event.target.id)">Completed</li>
+    <li *ngFor="let tab of _tabs" id="all" [class.active]="_navState === tab.state" (click)="changeState(tab.state)">
+      {{tab.state}}</li>
   </ul>
 
   <ul class="todos">
@@ -20,7 +19,8 @@
 
   <div class="footer">
     <div class="complete-all">
-      <input type="checkbox" id="ck-complete-all" class="custom-checkbox" (change)="allCheck($event.target.checked)">
+      <input type="checkbox" id="ck-complete-all" class="custom-checkbox" (change)="checkAll($event.target.checked)"
+        [checked]="checkAllMark">
       <label for="ck-complete-all">Mark all as complete</label>
     </div>
     <div class="clear-completed">
@@ -31,4 +31,4 @@
   </div>
 </div>
 
-<pre>{{ todos | json }}</pre>
+<pre>{{ Todo | json }}</pre>
