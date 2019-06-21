@@ -16,7 +16,11 @@
       <i class="remove-todo far fa-times-circle" (click)="removeTodo(todo.id)"></i>
     </li>
   </ul>
-  <ng-template #loading>loading...</ng-template>
+  <ng-template #loading>
+    <div class="lds-heart">
+      <div></div>
+    </div>
+  </ng-template>
 
   <div class="footer">
     <div class="complete-all">

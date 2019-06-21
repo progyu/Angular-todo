@@ -7,7 +7,6 @@ import { NavItem } from './navItem.type';
   name: 'todosFilter'
 })
 export class TodosFilterPipe implements PipeTransform {
-  // | todosFilter: navState
   transform(todos: Todos[], navState: NavItem): Todos[] {
     return todos.filter(todo => {
       if (navState === 'Active') { return !todo.completed; }

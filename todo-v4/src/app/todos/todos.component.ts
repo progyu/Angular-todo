@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Todos } from '../todos.interface';
+import { NavItem } from '../navItem.type';
 
 @Component({
   selector: 'app-todos',
@@ -9,11 +10,19 @@ import { Todos } from '../todos.interface';
 })
 export class TodosComponent {
 
-  _todos: Todos[] = [
-    { id: 1, content: 'HTML', completed: true },
-    { id: 2, content: 'CSS', completed: true },
-    { id: 3, content: 'JS', completed: false }
-  ]
+  constructor() {
+    this.getTodos();
+  }
+
+  _todos: Todos[];
+
+  getTodos() {
+    setTimeout(() => {
+      this._todos = [{ id: 1, content: 'HTML', completed: true },
+      { id: 2, content: 'CSS', completed: true },
+      { id: 3, content: 'JS', completed: false }]
+    }, 3000);
+  }
 
   navItems: NavItem[] = ['All', 'Active', 'Completed'];
 
@@ -46,14 +55,17 @@ export class TodosComponent {
   }
 
   get CompletedCount() {
+    if (!this._todos) return;
     return this._todos.filter(({ completed }) => completed).length;
   }
 
   get LeftCount() {
+    if (!this._todos) return;
     return this._todos.length - this.CompletedCount;
   }
 
   get checkAllMark() {
+    if (!this._todos) return;
     return this._todos.every(({ completed }) => completed);
   }
 }
