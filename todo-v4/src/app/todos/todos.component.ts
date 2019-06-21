@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+
 import { Todos } from '../todos.interface';
-import { Tabs } from '../tabs.interface';
 
 @Component({
   selector: 'app-todos',
@@ -9,19 +9,15 @@ import { Tabs } from '../tabs.interface';
 })
 export class TodosComponent {
 
-  private _todos: Todos[] = [
+  _todos: Todos[] = [
     { id: 1, content: 'HTML', completed: true },
     { id: 2, content: 'CSS', completed: true },
     { id: 3, content: 'JS', completed: false }
   ]
 
-  _tabs: Tabs[] = [
-    { state: 'All' },
-    { state: 'Active' },
-    { state: 'Completed' }
-  ]
+  navItems: NavItem[] = ['All', 'Active', 'Completed'];
 
-  _navState: string = 'All';
+  navState: NavItem = 'All';
 
   addTodo(input: HTMLInputElement) {
     if (!input.value.trim()) return;
@@ -43,16 +39,6 @@ export class TodosComponent {
 
   clearCompleted() {
     this._todos = this._todos.filter(({ completed }) => !completed);
-  }
-
-  changeState(state: string) {
-    this._navState = state;
-  }
-
-  get Todo() {
-    if (this._navState === 'All') return this._todos;
-    else if (this._navState === 'Active') return this._todos.filter(todo => !todo.completed);
-    else return this._todos.filter(todo => todo.completed);
   }
 
   get generateId() {

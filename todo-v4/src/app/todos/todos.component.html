@@ -4,18 +4,19 @@
 
   <input class="input-todo" placeholder="What needs to be done?" (keyup.enter)="addTodo($event.target)" autofocus>
   <ul class="nav">
-    <li *ngFor="let tab of _tabs" id="all" [class.active]="_navState === tab.state" (click)="changeState(tab.state)">
-      {{tab.state}}</li>
+    <li *ngFor="let navItem of navItems" id="all" [class.active]="navState === navItem" (click)="navState=navItem">
+      {{navItem}}</li>
   </ul>
 
-  <ul class="todos">
-    <li class="todo-item" *ngFor="let todo of Todo">
+  <ul class="todos" *ngIf="_todos; else loading">
+    <li class="todo-item" *ngFor="let todo of _todos | todosFilter: navState">
       <input type="checkbox" id="ck-{{todo.id}}" class="custom-checkbox" [checked]="todo.completed"
         (change)="checkTodo(todo.id)">
       <label for="ck-{{todo.id}}">{{todo.content}}</label>
       <i class="remove-todo far fa-times-circle" (click)="removeTodo(todo.id)"></i>
     </li>
   </ul>
+  <ng-template #loading>loading...</ng-template>
 
   <div class="footer">
     <div class="complete-all">
@@ -31,4 +32,4 @@
   </div>
 </div>
 
-<pre>{{ Todo | json }}</pre>
+<pre>{{ _todos | json }}</pre>
