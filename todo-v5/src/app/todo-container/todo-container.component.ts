@@ -43,7 +43,7 @@ export class TodoContainerComponent {
   }
 
   checkAll(check: boolean) {
-    this._todos = this._todos.map(todo => check ? { ...todo, completed: true } : { ...todo, completed: false });
+    this._todos = this._todos.map(todo => ({ ...todo, completed: check }));
   }
 
   clearCompleted() {
