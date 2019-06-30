@@ -28,7 +28,8 @@ export class TodoContainerComponent implements OnInit {
 
   // 서버에 모든 todos를 요청한다.
   getTodos() {
-    this.http.get<Todos[]>(environment.appUrl).subscribe(todos => this._todos = todos);
+    this.http.get<Todos[]>(environment.appUrl)
+    .subscribe(todos => this._todos = todos);
   }
 
   // todo를 추가한다.
@@ -44,23 +45,27 @@ export class TodoContainerComponent implements OnInit {
 
   // id를 확인하여 todo를 지운다.
   removeTodo(delId: number) {
-    this.http.delete<Todos[]>(environment.appUrl + delId).subscribe(todos => this._todos = todos);
+    this.http.delete<Todos[]>(environment.appUrl + delId)
+    .subscribe(todos => this._todos = todos);
   }
 
   // id를 확인하여 check 한다.
   checkTodo(checkId: number) {
     const completed = !this._todos.find(todo => todo.id === checkId).completed;
-    this.http.patch<Todos[]>(environment.appUrl + checkId, { completed }).subscribe(todos => this._todos = todos);
+    this.http.patch<Todos[]>(environment.appUrl + checkId, { completed })
+    .subscribe(todos => this._todos = todos);
   }
 
   // 모든 check box를 check 한다.
   checkAll(check: boolean) {
-    this.http.patch<Todos[]>(environment.appUrl, { completed : check}).subscribe(todos => this._todos = todos);
+    this.http.patch<Todos[]>(environment.appUrl, { completed : check})
+    .subscribe(todos => this._todos = todos);
   }
 
   // completed 값이 true인 모든 todo를 삭제한다.
   clearCompleted() {
-    this.http.delete<Todos[]>(environment.appUrl + 'completed').subscribe(todos => this._todos = todos);
+    this.http.delete<Todos[]>(environment.appUrl + 'completed')
+    .subscribe(todos => this._todos = todos);
   }
 
   // todo 마다 id를 생성한다.
