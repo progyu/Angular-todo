@@ -1,0 +1,4 @@
+<ul class="nav">
+  <li *ngFor="let navItem of navItems" id="all" [class.active]="navState === navItem" (click)="state.emit(navItem)">
+    {{navItem}}</li>
+</ul>
