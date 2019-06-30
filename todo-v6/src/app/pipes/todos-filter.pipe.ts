@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Todos } from './todos.interface';
-import { NavItem } from './navItem.type';
+import { Todos } from '../types/todos.interface';
+import { NavItem } from '../types/navItem.type';
 
 @Pipe({
   name: 'todosFilter'

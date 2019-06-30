@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
-import { Todos } from '../todos.interface';
-import { NavItem } from '../navItem.type';
+import { Todos } from '../../../types/todos.interface';
+import { NavItem } from '../../../types/navItem.type';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-todo-container',

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Todos } from '../todos.interface';
-import { NavItem } from '../navItem.type';
+import { Todos } from '../../../types/todos.interface';
+import { NavItem } from '../../../types/navItem.type';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css', '../checkbox.css']
+  styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
   @Input() _todos: Todos[];
