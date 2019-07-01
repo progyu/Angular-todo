@@ -1,1 +1,1 @@
-<input class="input-todo" placeholder="What needs to be done?" (keyup.enter)="add.emit($event.target)" autofocus>
+<input class="input-todo" placeholder="What needs to be done?" [(ngModel)]="content" (keyup.enter)="addTodo()" autofocus>
