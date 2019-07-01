@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="title">Todos</h1>
+  <div class="ver">7.0</div>
+
+  <app-todo-form (add)="addTodo($event)"></app-todo-form>
+
+  <app-todo-nav [navItems]="navItems" [navState]="navState" (state)="navState=$event"></app-todo-nav>
+  <app-todo-list [_todos]="_todos" [navState]="navState" (check)="checkTodo($event)" (remove)="removeTodo($event)">
+  </app-todo-list>
+  <app-todo-footer (checkAll)="checkAll($event)" [checkAllMark]="checkAllMark" (clearCompleted)="clearCompleted()"
+    [CompletedCount]="CompletedCount" [LeftCount]="LeftCount">
+  </app-todo-footer>
+</div>
+
+<pre>{{ _todos | json }}</pre>
