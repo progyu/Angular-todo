@@ -1,0 +1,13 @@
+<ul class="todos" *ngIf="_todos; else loading">
+  <li class="todo-item" *ngFor="let todo of _todos | todosFilter: navState">
+    <input type="checkbox" id="ck-{{todo.id}}" class="custom-checkbox" [checked]="todo.completed"
+      (change)="check.emit(todo.id)">
+    <label for="ck-{{todo.id}}">{{todo.content}}</label>
+    <i class="remove-todo far fa-times-circle" (click)="remove.emit(todo.id)"></i>
+  </li>
+</ul>
+<ng-template #loading>
+  <div class="lds-heart">
+    <div></div>
+  </div>
+</ng-template>
